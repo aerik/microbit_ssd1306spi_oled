@@ -10,9 +10,6 @@
         "README.md",
         "SSD1306spi_OLED.ts"
     ],
-    "testFiles": [
-        "neotest.ts"
-    ],
     "yotta": {
         "config": {
             "microbit-dal": {
