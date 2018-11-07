@@ -1,0 +1,26 @@
+{
+    "name": "SSD1306spi_OLED",
+    "version": "0.6.10",
+    "description": "OLED driver for SSD1306 over spi",
+    "license": "",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "SSD1306spi_OLED.ts"
+    ],
+    "testFiles": [
+        "neotest.ts"
+    ],
+    "yotta": {
+        "config": {
+            "microbit-dal": {
+                "bluetooth": {
+                    "enabled": 0
+                }
+            }
+        }
+    },
+    "public": true
+}
