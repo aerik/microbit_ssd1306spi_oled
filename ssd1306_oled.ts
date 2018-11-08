@@ -14,7 +14,7 @@ namespace custom {
      * @param e describe parameter here
      */
     //% block
-    export function ShowCharAtIdx(s: string, n: number): void {
+    export function ImageAtIdx(n: number, s: string): void {
         let c = s.charCodeAt(n);
         if (c < ASCII_START || c > ASCII_END) {
             c = '?'.charCodeAt(0);
