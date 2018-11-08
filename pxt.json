@@ -1,8 +1,8 @@
 {
-    "name": "SSD1306spi_OLED",
+    "name": "ssd1306spi",
     "version": "0.0.1",
     "description": "OLED driver for SSD1306 over spi",
-    "license": "",
+    "license": "MIT",
     "dependencies": {
         "core": "*"
     },
