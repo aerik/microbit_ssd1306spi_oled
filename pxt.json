@@ -8,16 +8,7 @@
     },
     "files": [
         "README.md",
-        "SSD1306spi_OLED.ts"
+        "ssd1306_oled.ts"
     ],
-    "yotta": {
-        "config": {
-            "microbit-dal": {
-                "bluetooth": {
-                    "enabled": 0
-                }
-            }
-        }
-    },
     "public": true
 }
