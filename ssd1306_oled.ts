@@ -41,9 +41,16 @@ class SSD1306 {
     }
 
     public test() {
-        this.screen.setNumber(NumberFormat.Int8LE, 32, 255);
-        this.screen.setNumber(NumberFormat.Int8LE, 64, 255);
-        this.screen.setNumber(NumberFormat.Int8LE, 96, 255);
+		//letter A
+        this.screen.setNumber(NumberFormat.Int8LE, 2, 30);
+        this.screen.setNumber(NumberFormat.Int8LE, 3, 5);
+        this.screen.setNumber(NumberFormat.Int8LE, 4, 5);
+        this.screen.setNumber(NumberFormat.Int8LE, 5, 30);
+        //shifted
+        this.screen.setNumber(NumberFormat.Int8LE, 32, 60);
+        this.screen.setNumber(NumberFormat.Int8LE, 33, 35);
+        this.screen.setNumber(NumberFormat.Int8LE, 34, 35);
+        this.screen.setNumber(NumberFormat.Int8LE, 35, 60);
         this.draw_screen();
         let nf = NumberFormat.UInt8LE
     }
