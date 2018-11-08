@@ -1,5 +1,5 @@
 class SSD1306 {
-    private screen: number[];
+    private screen: string; //each char is (at least) a byte
     private _cmd(cAry: number[]): void {
         pins.P16.digitalWrite(false);
         for (let i = 0; i < cAry.length; i++) {
@@ -23,9 +23,9 @@ class SSD1306 {
         pins.spiFrequency(9600);
         pins.P15.digitalWrite(true);
         this._cmd(c);
-        this.screen = [];
+        this.screen = "";
         for (let i = 0; i < 1024; i++) {
-            this.screen[i] = 0;
+            this.screen+='\0';
         }
     }
     private _set_pos(col: number, page: number) {
@@ -35,21 +35,21 @@ class SSD1306 {
     }
     public clear_old() {
         for (let i = 0; i < 1024; i++) {
-            this.screen[i] = 0;
+            this.screen[i] = '\0';
         }
     }
     public draw_screen() {
         this._set_pos(0, 0);
         for (let i = 0; i < this.screen.length; i++) {
-            pins.spiWrite(this.screen[i]);
+            pins.spiWrite(this.screen.charCodeAt(i));
         }
     }
 
     public test() {
-        this.screen[32] = 255;
-        this.screen[68] = 255;
-        this.screen[72] = 255;
-        this.screen[88] = 255;
+        this.screen[32] = '\xff',
+        this.screen[68] = '\xff';
+        this.screen[72] = '\xff';
+        this.screen[88] = '\xff';
         this.draw_screen();
     }
 }
