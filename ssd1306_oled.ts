@@ -47,10 +47,10 @@ class SSD1306 {
         this.screen.setNumber(NumberFormat.Int8LE, 4, 5);
         this.screen.setNumber(NumberFormat.Int8LE, 5, 30);
         //shifted by whole bytes?
-        this.screen.setNumber(NumberFormat.Int8LE, 32, 54);
-        this.screen.setNumber(NumberFormat.Int8LE, 33, 29);
-        this.screen.setNumber(NumberFormat.Int8LE, 34, 29);
-        this.screen.setNumber(NumberFormat.Int8LE, 35, 54);
+        this.screen.setNumber(NumberFormat.Int8LE, 152, 30);
+        this.screen.setNumber(NumberFormat.Int8LE, 153, 5);
+        this.screen.setNumber(NumberFormat.Int8LE, 154, 5);
+        this.screen.setNumber(NumberFormat.Int8LE, 155, 30);
         this.draw_screen();
         let nf = NumberFormat.UInt8LE
     }
