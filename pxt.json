@@ -1,6 +1,6 @@
 {
     "name": "SSD1306spi_OLED",
-    "version": "0.6.10",
+    "version": "0.0.1",
     "description": "OLED driver for SSD1306 over spi",
     "license": "",
     "dependencies": {
