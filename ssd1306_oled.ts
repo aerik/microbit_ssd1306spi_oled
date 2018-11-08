@@ -1,5 +1,5 @@
 class SSD1306 {
-    private screen: string; //each char is (at least) a byte
+    private screen: Buffer; //each char is (at least) a byte
     private _cmd(cAry: number[]): void {
         pins.P16.digitalWrite(false);
         for (let i = 0; i < cAry.length; i++) {
@@ -15,18 +15,15 @@ class SSD1306 {
         pins.P16.digitalWrite(true);
     }
     constructor() {
-        let c = [174, 164, 213, 240, 168, 63, 211, 0, 0, 141, 20, 32, 0, 33, 0, 127, 34, 0, 63, 161, 200, 218, 18, 129, 207, 217, 241, 219, 64, 166, 214, 0, 175];
         let x = '\xAE\xA4\xD5\xF0\xA8\x3F\xD3\x00\x00\x8D\x14\x20\x00\x21\x00\x7F\x22\x00\x3F\xa1\xc8\xDA\x12\x81\xCF\xd9\xF1\xDB\x40\xA6\xd6\x00\xaf';
         pins.P15.digitalWrite(false);
         pins.spiPins(DigitalPin.P14, DigitalPin.P14, DigitalPin.P13);
         pins.spiFormat(8, 0);
         pins.spiFrequency(9600);
         pins.P15.digitalWrite(true);
-        this._cmd(c);
-        this.screen = "";
-        for (let i = 0; i < 1024; i++) {
-            this.screen+='\0';
-        }
+        this._cmd2(x);
+        this.screen = pins.createBuffer(1024);
+        this.screen.fill(0);
     }
     private _set_pos(col: number, page: number) {
         let c1 = col * 2 & 0x0F;
@@ -34,22 +31,20 @@ class SSD1306 {
         this._cmd([0xb0 | page, 0x00 | c1, 0x10 | c2]);
     }
     public clear_old() {
-        for (let i = 0; i < 1024; i++) {
-            this.screen[i] = '\0';
-        }
+        this.screen.fill(0);
     }
     public draw_screen() {
         this._set_pos(0, 0);
         for (let i = 0; i < this.screen.length; i++) {
-            pins.spiWrite(this.screen.charCodeAt(i));
+            pins.spiWrite(this.screen.getNumber(NumberFormat.Int8LE, i));
         }
     }
 
     public test() {
-        this.screen[32] = '\xff',
-        this.screen[68] = '\xff';
-        this.screen[72] = '\xff';
-        this.screen[88] = '\xff';
+        this.screen.setNumber(NumberFormat.Int8LE, 32, 255);
+        this.screen.setNumber(NumberFormat.Int8LE, 64, 255);
+        this.screen.setNumber(NumberFormat.Int8LE, 96, 255);
         this.draw_screen();
+        let nf = NumberFormat.UInt8LE
     }
 }
