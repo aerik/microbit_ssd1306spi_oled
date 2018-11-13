@@ -8,7 +8,8 @@
     },
     "files": [
         "README.md",
-        "ssd1306_oled.ts"
+        "ssd1306_oled.ts",
+        "verticalfont.ts"
     ],
     "public": true
 }
