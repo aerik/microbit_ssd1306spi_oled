@@ -1,3 +1,4 @@
+//% color="#AA278D"
 namespace vFont {
     const ASCII_START = 32;
     const ASCII_END = 126;
@@ -12,6 +13,10 @@ namespace vFont {
         return data;
     }
 
+    /**
+     * Returns numbers (bytes) representing pixels of a character column.
+     */
+    //% block
     export function GetCharacterColValues(inStr: string): number[] {
         let vals: number[] = [];
         for (let i = 0; i < inStr.length; i++) {

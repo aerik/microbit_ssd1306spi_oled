@@ -1,3 +1,4 @@
+//% color="#AA278D"
 namespace SSD1306oled {
 
     const screenSize = 1024;
@@ -121,14 +122,25 @@ namespace SSD1306oled {
         oled.drawValueAt(val, col, page);
     }
 
+    /**
+     * Draws text to the oled screen (or buffer) at column, page (character row).
+     */
+    //% block
     export function drawTextAt(txt: string, col: number, page: number) {
         oled.drawTextAt(txt, col, page);
     }
 
+    /**
+     * Use a buffer to draw output (call "drawBuffer" to show on screen)
+     */
+    //% block
     export function useBuffer() {
         oled.use_buffer();
     }
-
+    /**
+     * Draw the contents of the buffer to screen
+     */
+    //% block
     export function drawBuffer() {
         oled.draw_screen();
     }
