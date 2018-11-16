@@ -1,3 +1,8 @@
+/**
+ * Vertically rendered Font for OLED
+ * 5x5 characters based from Micro:bit library, translated to vertical storage
+ * (font pixels stored as columns, one byte per column)
+ */
 //% color="#AA278D"
 namespace vFont {
     const ASCII_START = 32;
