@@ -1,5 +1,9 @@
+/**
+ * Driver for SSD1306 OLED over SPI
+ * (128 columns by 64 only currently)
+ */
 //% color="#AA278D"
-namespace SSD1306oled {
+namespace oledSSD1306spi {
 
     const screenSize = 1024;
     //rowCount * colCount must equal screenSize
@@ -58,7 +62,6 @@ namespace SSD1306oled {
             for (let i = 0; i < screenSize; i++) {
                 pins.spiWrite(0);
             }
-            if (this.screenBuffer != null) this.screenBuffer.fill(0);
         }
 
         public drawValueAt(val: number, col: number, page: number) {
@@ -104,6 +107,20 @@ namespace SSD1306oled {
                 }
             }
         }
+        public scrollBufferPage() {
+            if (this.screenBuffer != null) {
+                let i = 0;
+                for (; i < (this.screenBuffer.length - colCount); i++) {
+                    this.screenBuffer.setNumber(NumberFormat.Int8LE, i, this.screenBuffer.getNumber(NumberFormat.Int8LE, i + colCount));
+                }
+                for (; i < this.screenBuffer.length; i++) {
+                    this.screenBuffer.setNumber(NumberFormat.Int8LE, i, 0);
+                }
+            }
+        }
+        public clearBuffer() {
+            if (this.screenBuffer != null) this.screenBuffer.fill(0);
+        }
         public set_pixel(x: number, y: number) {
             if (this.screenBuffer == null) {
                 this.clear_screen();
@@ -129,19 +146,34 @@ namespace SSD1306oled {
     export function drawTextAt(txt: string, col: number, page: number) {
         oled.drawTextAt(txt, col, page);
     }
+    
+	/**
+	* Clears the screen
+	*/
+	//% block
+    export function clearScreen(){
+        oled.clear_screen();
+    }
 
     /**
      * Use a buffer to draw output (call "drawBuffer" to show on screen)
      */
-    //% block
+    //% block advanced=true
     export function useBuffer() {
         oled.use_buffer();
     }
     /**
      * Draw the contents of the buffer to screen
      */
-    //% block
+    //% block advanced=true
     export function drawBuffer() {
         oled.draw_screen();
+    }
+    /**
+     * Scroll the buffer up by one page
+     */
+    //% block
+    export function scrollBufferPage() {
+        oled.scrollBufferPage();
     }
 }
